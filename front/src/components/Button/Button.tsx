@@ -2,7 +2,7 @@ import styled from "styled-components"
 import colors from "../../consts/colors"
 
 interface I_ButtonProps {
-    type?: 'primary' | 'secondary' | 'ghost',
+    type?: 'primary' | 'secondary' | 'ghost' | 'danger',
     children?: React.ReactNode,
     block?: boolean,
     disabled?: boolean,
@@ -24,8 +24,8 @@ const Button = styled (({
     >
         {children}
     </button>
-))`
-user-select: none;
+)) `
+    user-select: none;
     cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
     border-radius: 5px;
     display: inline-flex;
@@ -46,8 +46,9 @@ user-select: none;
 
         switch (type){
             case 'primary': return colors.primary
-            case 'secondary': return '#fff'
+            case 'secondary': return colors.secondary
             case 'ghost': return 'transparent'
+            case 'danger': return colors.danger
             default: return colors.primary
         }
     }};user-select: none;
@@ -71,8 +72,9 @@ user-select: none;
 
         switch (type){
             case 'primary': return colors.primary
-            case 'secondary': return '#fff'
+            case 'secondary': return colors.secondary
             case 'ghost': return 'transparent'
+            case 'danger': return colors.danger
             default: return colors.primary
         }
     }};

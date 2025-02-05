@@ -1,12 +1,17 @@
 import { Helmet } from "react-helmet"
+import { useSelector } from "react-redux"
 
 import { PageWrapper } from "../../App.styled"
 import { ProductGroup, ProductGroupContainer } from "./styled"
 import { dummyProducts } from "../dummyProducts"
 import ProductCard from "../../blocks/ProductCard/ProductCard"
+import { selectFavorites } from "../../features/Favorites/selectors"
 
 
 const HomePage: React.FC =() =>{
+    const idsInFavorites = useSelector(selectFavorites)
+
+    
     return <>
         <Helmet>
             <title>Главная {}</title>
@@ -23,7 +28,7 @@ const HomePage: React.FC =() =>{
                         <ProductCard
                         {...p}
                         key={p.id}
-                        // isLiked = {idsInFavorites.includes(p.id)}
+                        isLiked = {idsInFavorites.includes(p.id)}
                         />
                     ))}
                 </ProductGroupContainer>
