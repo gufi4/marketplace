@@ -4,22 +4,30 @@ export const dummyProducts: I_ProductDetails[] = [
     {
         id: 1,
         slug: 'product--ryukzak-antichnyy-bordovyy',
-        imgSrc: 'https://avatars.mds.yandex.net/get-mpic/6434027/2a00000191e7f19d0b83db0a2b6e0a34e4d9/orig',
-        priceRegular: 5500,
+        image: 'https://i.pinimg.com/736x/c3/31/b4/c331b4aec5345b5460b73064f2051141.jpg',
+        price: 5500,
         priceDiscounted: 4300,
-        title: 'Рюкзак "Античный бордовый"',
-        desc: 'Этот новый рюкзак 2024 года представляет собой сумку особой формы, которая станет незаменимым аксессуаром в вашем гардеробе.',
+        title: 'Рюкзак Античный бордовый',
+        description: 'Этот новый рюкзак 2024 года представляет собой сумку особой формы, которая станет незаменимым аксессуаром в вашем гардеробе.',
     },
     {
         id: 2,
         slug: 'product--kovrik-dlia-myshi-igrovoi-kovrik-dlia-myshi-defender-liberty',
-        imgSrc: 'https://avatars.mds.yandex.net/get-mpic/12569700/2a0000018d794f25304918c828c4ed6b822a/orig',
-        priceRegular: 400,
+        image: 'https://i.pinimg.com/736x/83/46/9e/83469e2a3110eb5858d03c2ecf00f1b0.jpg',
+        price: 400,
         title: 'Игровой коврик для компьютерной мыши Defender Liberty',
-        desc: `Игровой коврик для компьютерной мыши Defender Liberty 800х300х3мм:
+        description: `Игровой коврик для компьютерной мыши Defender Liberty 800х300х3мм:
 Гладкая поверхность.
 Подходит для оптических и лазерных мышей с любой чувствительностью и любым типом сенсора.`
     },
+    {
+    id: 3,
+    image: 'https://avatars.mds.yandex.net/get-marketpic/5119891/pice0802b105955ec5d6455972b10f4b5c0/x248_trim',
+    price: 300,
+    priceDiscounted: 210,
+    title: 'Бланк документа "Удостоверение"',
+    description: 'Имеет обложку из бумвинила с использованием мягкой подложки из поролона.',
+  },
 //     {
 //         id: 3,
 //         imgSrc: 'https://avatars.mds.yandex.net/get-mpic/6559549/2a0000018ab38677bf5a4ba423ccb136ab6a/orig',
