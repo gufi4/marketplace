@@ -50,7 +50,7 @@ export const Burger = styled.div`
     margin-right: 10px;
 
     div {
-        position: absolute;
+        position: relative;
         display: block;
         width: 18px;
         height: 2px;
@@ -58,7 +58,7 @@ export const Burger = styled.div`
         background-color: #fff;
     }
 
-    div:not(:first-child) {
+        div:not(:first-child) {
         margin-top: 3px;
     }
 `

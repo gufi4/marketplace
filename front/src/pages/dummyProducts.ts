@@ -1,102 +1,185 @@
-import { I_ProductDetails } from "./types";
+import product_1 from '../img/products/product-1.png'
+import product_2 from '../img/products/product-2.png'
+import product_3 from '../img/products/product-3.png'
+import product_4 from '../img/products/product-4.png'
+import product_5 from '../img/products/product-5.png'
+import product_6 from '../img/products/product-6.png'
+import product_7 from '../img/products/product-7.png'
+import product_8 from '../img/products/product-8.png'
 
-export const dummyProducts: I_ProductDetails[] = [
+
+export const dummyProducts: any[] = [
     {
         id: 1,
-        slug: 'product--ryukzak-antichnyy-bordovyy',
-        image: 'https://i.pinimg.com/736x/c3/31/b4/c331b4aec5345b5460b73064f2051141.jpg',
-        price: 5500,
-        priceDiscounted: 4300,
-        title: 'Рюкзак Античный бордовый',
-        description: 'Этот новый рюкзак 2024 года представляет собой сумку особой формы, которая станет незаменимым аксессуаром в вашем гардеробе.',
+        slug: 'product-1',
+        image:`${product_1}`,
+        price: 1800,
+        title: 'Nike',
+        description: 'Кроссовки отличного качества...',
+        newModel: true,
+        brend: 'nike',
     },
     {
         id: 2,
-        slug: 'product--kovrik-dlia-myshi-igrovoi-kovrik-dlia-myshi-defender-liberty',
-        image: 'https://i.pinimg.com/736x/83/46/9e/83469e2a3110eb5858d03c2ecf00f1b0.jpg',
-        price: 400,
-        title: 'Игровой коврик для компьютерной мыши Defender Liberty',
-        description: `Игровой коврик для компьютерной мыши Defender Liberty 800х300х3мм:
-Гладкая поверхность.
-Подходит для оптических и лазерных мышей с любой чувствительностью и любым типом сенсора.`
+        slug: 'product-2',
+        image:`${product_2}`,
+        price: 2000,
+        title: 'Nike',
+        description: 'Кроссовки отличного качества...',
+        brend: 'adidas',
     },
     {
-    id: 3,
-    image: 'https://avatars.mds.yandex.net/get-marketpic/5119891/pice0802b105955ec5d6455972b10f4b5c0/x248_trim',
-    price: 300,
-    priceDiscounted: 210,
-    title: 'Бланк документа "Удостоверение"',
-    description: 'Имеет обложку из бумвинила с использованием мягкой подложки из поролона.',
-  },
-//     {
-//         id: 3,
-//         imgSrc: 'https://avatars.mds.yandex.net/get-mpic/6559549/2a0000018ab38677bf5a4ba423ccb136ab6a/orig',
-//         priceRegular: 1000,
-//         title: 'Коврик входной влаговпитывающий Прилет-вылет 50х80 см',
-//         desc: `Коврик Домашняя страница серии - практичное решение для сохранения чистоты входной зоны.
-// Изделие очищает обувь от грязи и влаги, одновременно защищая напольное покрытие от истирания и воздействия воды.`
-//     },
-//     {
-//         id: 4,
-//         slug: 'product--smartfon-apple-iphone-16-pro-max-256',
-//         imgSrc: 'https://avatars.mds.yandex.net/get-mpic/5219306/2a00000191e6b1805c76be3c9520563c6808/600x800',
-//         priceRegular: 140000,
-//         priceDiscounted: 126500,
-//         title: 'Смартфон Apple iPhone 16 Pro Max 256 ГБ, Dual: nano SIM + eSIM, Desert Titanium',
-//         desc: `Phone 16 Pro Max оснащён обновлённой версией Apple Intelligence, которая делает вашу жизнь проще, удобнее и безопаснее. Персональный помощник не только помогает вам писать и работать, но и обеспечивает непревзойденную защиту ваших данных. Конфиденциальность находится в центре внимания: все процессы выполняются на устройстве, что исключает утечку информации.`
-//     },
-//     {
-//         id: 5,
-//         slug: 'product--muzhskaia-sportivnaia-zhiletka',
-//         imgSrc: 'https://avatars.mds.yandex.net/get-mpic/4977172/2a00000191bb1b2513dac3511543fac069ce/orig',
-//         priceRegular: 2000,
-//         priceDiscounted: 1880,
-//         title: 'Жилет спортивный Jools Fashion',
-//         desc: `Мужской спортивный жилет — идеальный выбор для тех, кто ценит комфорт и стиль. Эта универсальная вещь станет незаменимым элементом вашего гардероба и поможет создать множество стильных образов.`
-//     },
-//     {
-//         id: 6,
-//         imgSrc: 'https://avatars.mds.yandex.net/get-mpic/4818396/2a00000191f428cc9ebf66d03842a7847236/orig',
-//         priceRegular: 1050,
-//         title: 'Творческий набор для рисования эпоксидной смолой в технике Resin Art "Остров". Домашнее творчество для взрослых и детей.',
-//         desc: `Набор для рисования эпоксидной смолой Epic Art "Остров" - готовое решение, для всех кто хочет рисовать картины в технике Resin Art или для тех, кто ищет необычный и креативный подарок.
-// Приобретая набор, вы получаете все материалы для создания картины. В наборе есть все необходимое, начиная от материалов для создания работы и до сопутствующих материалов, таких как емкость для смешивания и защитный материал для рабочего места. Дополнительно вам потребуется только обычный домашний фен и электронный весы.`
-//     },
-//     {
-//         id: 7,
-//         slug: 'product--tvorcheskii-nabor-dlia-risovaniia',
-//         imgSrc: 'https://avatars.mds.yandex.net/get-mpic/4818396/2a00000191f428cc9ebf66d03842a7847236/orig',
-//         priceRegular: 1050,
-//         priceDiscounted: 900,
-//         title: 'Творческий набор для рисования эпоксидной смолой в технике Resin Art "Остров". Домашнее творчество для взрослых и детей.',
-//         desc: `Набор для рисования эпоксидной смолой Epic Art "Остров" - готовое решение, для всех кто хочет рисовать картины в технике Resin Art или для тех, кто ищет необычный и креативный подарок.
-// Приобретая набор, вы получаете все материалы для создания картины. В наборе есть все необходимое, начиная от материалов для создания работы и до сопутствующих материалов, таких как емкость для смешивания и защитный материал для рабочего места. Дополнительно вам потребуется только обычный домашний фен и электронный весы.`
-//     },
-//     {
-//         id: 8,
-//         slug: 'product--tvorcheskii-nabor-dlia-risovaniia',
-//         imgSrc: 'https://avatars.mds.yandex.net/get-mpic/4818396/2a00000191f428cc9ebf66d03842a7847236/orig',
-//         priceRegular: 1050,
-//         title: 'Творческий набор для рисования эпоксидной смолой в технике Resin Art "Остров". Домашнее творчество для взрослых и детей.',
-//         desc: `Набор для рисования эпоксидной смолой Epic Art "Остров" - готовое решение, для всех кто хочет рисовать картины в технике Resin Art или для тех, кто ищет необычный и креативный подарок.
-// Приобретая набор, вы получаете все материалы для создания картины. В наборе есть все необходимое, начиная от материалов для создания работы и до сопутствующих материалов, таких как емкость для смешивания и защитный материал для рабочего места. Дополнительно вам потребуется только обычный домашний фен и электронный весы.`
-//     },
-//     {
-//         id: 9,
-//         imgSrc: 'https://avatars.mds.yandex.net/get-mpic/4818396/2a00000191f428cc9ebf66d03842a7847236/orig',
-//         priceRegular: 1050,
-//         title: 'Творческий набор для рисования эпоксидной смолой в технике Resin Art "Остров". Домашнее творчество для взрослых и детей.',
-//         desc: `Набор для рисования эпоксидной смолой Epic Art "Остров" - готовое решение, для всех кто хочет рисовать картины в технике Resin Art или для тех, кто ищет необычный и креативный подарок.
-// Приобретая набор, вы получаете все материалы для создания картины. В наборе есть все необходимое, начиная от материалов для создания работы и до сопутствующих материалов, таких как емкость для смешивания и защитный материал для рабочего места. Дополнительно вам потребуется только обычный домашний фен и электронный весы.`
-//     },
-//     {
-//         id: 10,
-//         slug: 'product--tvorcheskii-nabor-dlia-risovaniia',
-//         imgSrc: 'https://avatars.mds.yandex.net/get-mpic/4818396/2a00000191f428cc9ebf66d03842a7847236/orig',
-//         priceRegular: 1050,
-//         title: 'Творческий набор для рисования эпоксидной смолой в технике Resin Art "Остров". Домашнее творчество для взрослых и детей.',
-//         desc: `Набор для рисования эпоксидной смолой Epic Art "Остров" - готовое решение, для всех кто хочет рисовать картины в технике Resin Art или для тех, кто ищет необычный и креативный подарок.
-// Приобретая набор, вы получаете все материалы для создания картины. В наборе есть все необходимое, начиная от материалов для создания работы и до сопутствующих материалов, таких как емкость для смешивания и защитный материал для рабочего места. Дополнительно вам потребуется только обычный домашний фен и электронный весы.`
-//     },
+        id: 3,
+        slug: 'product-3',
+        image:`${product_3}`,
+        price: 3800,
+        title: 'Nike',
+        description: 'Кроссовки отличного качества...',
+        newModel: true,
+        brend: 'newbalance',
+    },
+    {
+        id: 4,
+        slug: 'product-4',
+        image:`${product_4}`,
+        price: 4800,
+        title: 'Nike',
+        description: 'Кроссовки отличного качества...',
+        newModel: true,
+        brend: 'puma',
+    },
+    {
+        id: 5,
+        slug: 'product-5',
+        image:`${product_5}`,
+        price: 5800,
+        title: 'Nike',
+        description: 'Кроссовки отличного качества...',
+        brend: 'converse',
 
+    },
+    {
+        id: 6,
+        slug: 'product-6',
+        image:`${product_6}`,
+        price: 6800,
+        title: 'Nike',
+        description: 'Кроссовки отличного качества...',
+        brend: 'reebok',
+    },
+    {
+        id: 7,
+        slug: 'product-7',
+        image:`${product_7}`,
+        price: 7800,
+        title: 'Nike',
+        description: 'Кроссовки отличного качества...',
+        brend: 'nike',
+    },
+    {
+        id: 8,
+        slug: 'product-8',
+        image:`${product_8}`,
+        price: 7800,
+        title: 'Nike',
+        description: 'Кроссовки отличного качества...',
+        brend: 'adidas',
+    },
+    {
+        id: 9,
+        slug: 'product-9',
+        image:`${product_1}`,
+        price: 7800,
+        title: 'Nike',
+        description: 'Кроссовки отличного качества...',
+        newModel: true,
+        brend: 'reebok',
+    },
+    {
+        id: 10,
+        slug: 'product-10',
+        image:`${product_5}`,
+        price: 7800,
+        title: 'Nike',
+        description: 'Кроссовки отличного качества...',
+        brend: 'converse',
+        newModel: true,
+    },
+    {
+        id: 11,
+        slug: 'product-11',
+        image:`${product_3}`,
+        price: 7800,
+        title: 'Nike',
+        description: 'Кроссовки отличного качества...',
+        brend: 'adidas',
+    },
+    {
+        id: 12,
+        slug: 'product-12',
+        image:`${product_2}`,
+        price: 7800,
+        title: 'Nike',
+        description: 'Кроссовки отличного качества...',
+        brend: 'nike',
+        newModel: true,
+    },
+    {
+        id: 13,
+        slug: 'product-13',
+        image:`${product_4}`,
+        price: 7800,
+        title: 'Nike',
+        description: 'Кроссовки отличного качества...',
+        brend: 'newbalance',
+    },
+    {
+        id: 14,
+        slug: 'product-14',
+        image:`${product_6}`,
+        price: 7800,
+        title: 'Nike',
+        description: 'Кроссовки отличного качества...',
+        brend: 'adidas',
+    },
+    {
+        id: 15,
+        slug: 'product-15',
+        image:`${product_7}`,
+        price: 7800,
+        title: 'Nike',
+        description: 'Кроссовки отличного качества...',
+        brend: 'newbalance',
+        newModel: true,
+    },
+    // {
+    //     id: 16,
+    //     slug: 'product-16',
+    //     image:`${product_8}`,
+    //     price: 7800,
+    //     title: 'Nike',
+    //     description: 'Кроссовки отличного качества...',
+    //     brend: 'converse',
+    //     newModel: true,
+    // },
+    // {
+    //     id: 17,
+    //     slug: 'product-17',
+    //     image:`${product_5}`,
+    //     price: 7800,
+    //     title: 'Nike',
+    //     description: 'Кроссовки отличного качества...',
+    //     brend: 'reebok',
+    //     newModel: true,
+    // },
+    // {
+    //     id: 18,
+    //     slug: 'product-18',
+    //     image:`${product_4}`,
+    //     price: 7800,
+    //     title: 'Nike',
+    //     description: 'Кроссовки отличного качества...',
+    //     brend: 'nike',
+    //     newModel: true,
+    // },
 ]

@@ -3,9 +3,10 @@ import { useSelector } from "react-redux"
 
 import { PageWrapper } from "../../App.styled"
 import { ProductGroup, ProductGroupContainer } from "./styled"
-import { dummyProducts } from "../dummyProducts"
-import ProductCard from "../../blocks/ProductCard/ProductCard"
 import { selectFavorites } from "../../features/Favorites/selectors"
+import ProductCard from "../../blocks/ProductCard"
+import { dummyProducts } from "../dummyProducts"
+
 
 
 const HomePage: React.FC =() =>{
@@ -14,12 +15,12 @@ const HomePage: React.FC =() =>{
     
     return <>
         <Helmet>
-            <title>Главная {}</title>
+            <title>Главная</title>
         </Helmet>
         
         <PageWrapper>
             <ProductGroup>
-                <h2>Рекомендуемые товары</h2>
+                <h1>Рекомендуемые товары</h1>
 
                 <ProductGroupContainer>
                     
@@ -31,6 +32,26 @@ const HomePage: React.FC =() =>{
                         isLiked = {idsInFavorites.includes(p.id)}
                         />
                     ))}
+                </ProductGroupContainer>
+            </ProductGroup>
+            
+            <ProductGroup>
+                <h1>Новинки</h1>
+
+                <ProductGroupContainer>
+
+                    {dummyProducts.map((p) => {
+                        if (p.newModel === true) {
+                            return (
+                            <ProductCard
+                            {...p}
+                            key={p.id}
+                            isLiked = {idsInFavorites.includes(p.id)}
+                            />
+                        )
+                        } 
+                            
+                    })}
                 </ProductGroupContainer>
             </ProductGroup>
         </PageWrapper>

@@ -20,7 +20,7 @@ export const App = () => {
         </Suspense>
 
         <Footer>
-            <div>@ Маркетплейс Gufi</div>
+            <div>Copyright © 2023. Все права защищены</div>
         </Footer>
     </>
 }

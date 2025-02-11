@@ -31,7 +31,7 @@ export const addToFavorites = (favoriteId: number): AnyAction => (
 )
 
 export const removeFromFavorites = (favoriteId: number): AnyAction => (
-    removeFromFavorites(favoriteId)
+    removeFromFavoritesAction(favoriteId)
 )
 
 export default favoritesReducer

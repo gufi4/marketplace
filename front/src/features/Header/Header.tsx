@@ -8,7 +8,7 @@ import Input from '../../components/Input'
 import { selectIsLogged } from '../App/selectors'
 import { selectFavorites } from '../Favorites/selectors'
 import UserDropdownMenu from './UserDropdownMenu'
-import logoPng from '../../img/logo.jpg'
+import logoPng from '../../img/logo.svg'
 
 import { 
     Wrapper,
@@ -23,6 +23,7 @@ import {
     BtnNotifications,
     BtnCart,
 } from './styled'
+import { selectCart } from '../Cart/selectors'
 
 
 const Header: React.FC = () => {
@@ -30,6 +31,7 @@ const Header: React.FC = () => {
 
     const isLogged = useAppSelector(selectIsLogged)
     const favorites = useAppSelector(selectFavorites)
+    const cart = useAppSelector(selectCart)
 
     const [ searchInput, setSearchInput ] = useState<string>('')
 
@@ -76,7 +78,7 @@ const Header: React.FC = () => {
                     <BtnOrders/>
                     <BtnFavorites count={favorites.length}/>
                     <BtnNotifications/>
-                    <BtnCart/>
+                    <BtnCart count={cart.length}/>
                     <UserDropdownMenu/>
                 </> : (
                     <Link to={paths.login}>

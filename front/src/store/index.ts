@@ -5,12 +5,14 @@ import type { TypedUseSelectorHook } from "react-redux"
 import app from '../features/App/reducer'
 import userData from '../features/UsserData/reducer'
 import favorites from '../features/Favorites/reducer'
+import cart from '../features/Cart/reducer'
 import type { T_RootState } from "./types"
 
 const reducer = combineReducers({
     app,
     userData,
-    favorites
+    favorites,
+    cart,
 })
 
 const store = configureStore({ reducer })

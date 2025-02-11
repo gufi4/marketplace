@@ -7,6 +7,7 @@ import HeartFilled from '../../img/heart-filled.svg?react'
 import Button from "../../components/Button"
 import { addToFavorites, removeFromFavorites } from "../../features/Favorites/reducer"
 import { paths } from "../../routes/helpers"
+import NewIcon from '../../img/new.svg?react'
 
 import { 
     Wrapper, 
@@ -14,12 +15,12 @@ import {
     Image, 
     PriceWrapper,
     PriceRegular,
-    PriceRegularWhenDiscounted,
-    PriceDiscounted,
     Title,
     Desc,
     BtnsWrapper,
+    NewWrapper,
 } from "./styled"
+import { addToCart } from "../../features/Cart/reducer"
 
 
 interface I_ProductCardProps {
@@ -27,11 +28,12 @@ interface I_ProductCardProps {
     slug?: string,
     image: string,
     price: number,
-    priceDiscounted?: number,
     title: string,
     description: string,
+    brend: string,
     isLiked: boolean,
-    hideLikes?: boolean
+    hideLikes?: boolean,
+    newModel?: boolean,
 }
 
 const ProductCard: React.FC<I_ProductCardProps> = ({
@@ -39,11 +41,12 @@ const ProductCard: React.FC<I_ProductCardProps> = ({
     slug,
     image,
     price,
-    priceDiscounted,
     title,
     description,
+    brend,
     isLiked,
-    hideLikes = false,
+    hideLikes,
+    newModel,
 }) => {
     const dispatch = useAppDispatch()
     const location = useLocation()
@@ -70,6 +73,14 @@ const ProductCard: React.FC<I_ProductCardProps> = ({
             )
         }, [ dispatch ]
     )
+    
+    const addProductFromCart = useCallback(
+        (e: React.MouseEvent<HTMLElement>) => {
+            dispatch(
+                addToCart(+e.currentTarget.dataset.productId!)
+            )
+        }, [ dispatch ]
+    )
 
 
         return(
@@ -83,30 +94,39 @@ const ProductCard: React.FC<I_ProductCardProps> = ({
                         </LikeWrapper>
                 )}
 
+                {newModel && (
+                    <NewWrapper>
+                        <NewIcon/>
+                    </NewWrapper>
+                )}
+
                 <Link to={`/product/${slug || id}`}>
                     <Image src={image}/>
                 </Link>
 
                 <PriceWrapper>
-                    {Number.isInteger(priceDiscounted) ? <>
-                    <PriceDiscounted>{priceDiscounted} ₽</PriceDiscounted>
-                    <PriceRegularWhenDiscounted>{PriceRegular} ₽</PriceRegularWhenDiscounted>
-                    </> : (
-                        <PriceRegular>{price} ₽</PriceRegular>
-                    )}
+                    <PriceRegular>{price} ₽</PriceRegular>
                 </PriceWrapper>
 
                 <Title className='h4'>
                     <Link to={`/product/${slug || id}`}>
-                    {title}
+                    {title} 
                     </Link>
                 </Title>
 
-                <Desc>{description}</Desc>
+                <Desc>
+                    Бренд: {brend}<br/>
+                    {description}
+                </Desc>
 
                 <BtnsWrapper>
-                    <Button block>
-                        В корзину
+                    <Button 
+                        type="primary"
+                        onClick={addProductFromCart}
+                        data-product-id={id}
+                        block
+                        >
+                        Добавить в корзину
                     </Button>
 
                     {isFavoritesPage && (

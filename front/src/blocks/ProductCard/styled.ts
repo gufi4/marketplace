@@ -5,18 +5,27 @@ export const Wrapper = styled.div`
     padding: 10px;
     position: relative;
 
-    svg {
-        cursor: pointer;
-    }
+    
 ` 
 
 export const LikeWrapper = styled.div`
     cursor: pointer;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 0;
+    right: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
+export const NewWrapper = styled.div`
     width: 30px;
     height: 30px;
     position: absolute;
     top: 0;
-    right: 0;
+    left: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,21 +48,7 @@ export const PriceWrapper = styled.div`
 export const PriceRegular = styled.div`
     font-size: 18px;
     font-weight: 700;
-    margin-right: 10px;
-    color: ${colors.primary};
-`
-
-export const PriceRegularWhenDiscounted = styled.div`
-    text-decoration: line-through;
-    color: #999;
-    font-size: 15px;
-`
-
-export const PriceDiscounted = styled.div`
-    font-size: 18px;
-    font-weight: 700;
-    margin-right: 10px;
-    color: ${colors.primary};
+    color: ${colors.secondary};
 `
 
 export const Title = styled.h3`
