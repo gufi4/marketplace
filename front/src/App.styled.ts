@@ -86,8 +86,8 @@ export const PageWrapper = styled.div`
 export const Footer = styled.div`
     padding: 10px 20px;
     display: flex;
-    justify-content: space-between;
-    background-color: ${colors.primary};
+    justify-content: center;
+    background-color: ${colors.secondary};
     color: #fff;
     height: ${FOOTER_HEIGHT};
 

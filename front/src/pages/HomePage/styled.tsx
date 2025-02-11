@@ -1,10 +1,10 @@
 import styled from "styled-components"
 
 export const ProductGroup = styled.div`
-    margin-top: 20px;
+    margin-top: 40px;
 
     > *:first-child {
-        margin-bottom: 10px;
+        margin-bottom: 20px;
     }
 `
 
@@ -14,6 +14,6 @@ export const ProductGroupContainer = styled.div`
 
     > * {
         width: 16.666666%;
-        margin-bottom: 20px;
+        margin-bottom: 25px;
     }
 `
