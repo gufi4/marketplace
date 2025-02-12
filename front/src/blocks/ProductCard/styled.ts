@@ -5,6 +5,11 @@ export const Wrapper = styled.div`
     padding: 10px;
     position: relative;
 
+    svg {
+        cursor: pointer;
+        max-width: 50px;
+        max-height: 50px;
+    }
     
 ` 
 

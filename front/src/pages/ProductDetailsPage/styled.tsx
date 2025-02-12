@@ -16,8 +16,8 @@ export const ImagesWrapper = styled.div`
 
 export const LikeWrapper = styled.div`
     cursor: pointer;
-    width: 40px;
-    height: 40px;
+    width: 20px;
+    height: 20px;
     position: absolute;
     top: 0;
     right: 0;
@@ -41,7 +41,10 @@ export const Image = styled.img`
 `
 
 export const InfoWrapper = styled.div`
-    width: calc(50% - 20px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: calc(50% - 30px);
 `
 
 // TODO: Duplicate in blocks/ProductCard/styled.ts
@@ -52,22 +55,7 @@ export const PriceWrapper = styled.div`
 `
 
 // TODO: Duplicate in blocks/ProductCard/styled.ts
-export const PriceRegular = styled.div`
-    font-size: 18px;
-    font-weight: 700;
-    margin-right: 10px;
-    color: ${colors.primary};
-`
-
-// TODO: Duplicate in blocks/ProductCard/styled.ts
-export const PriceRegularWhenDiscounted = styled.div`
-    text-decoration: line-through;
-    color: #999;
-    font-size: 15px;
-`
-
-// TODO: Duplicate in blocks/ProductCard/styled.ts
-export const PriceDiscounted = styled.div`
+export const Price = styled.div`
     font-size: 18px;
     font-weight: 700;
     margin-right: 10px;

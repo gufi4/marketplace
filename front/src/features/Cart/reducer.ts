@@ -3,20 +3,22 @@ import { AnyAction, createAction, createReducer, PayloadAction } from "@reduxjs/
 import { I_Cart } from "./types"
 
 
-const initialState: I_Cart = []
+const initialState: I_Cart =[]
 
+
+//Сделать редьюсео как у app, и добавить в него локал стор
 
 const addToCartAction = createAction<number>('CART/add')
 const removeFromCartAction = createAction<number>('CART/remove')
 
 const cartReducer = createReducer(initialState, (builder) => {
-    // Add to favorites
+    // Add to cart
     builder.addCase(
         addToCartAction,
         (state: any, action: PayloadAction<number>) => [...state, action.payload]
     )
 
-    // Remove from favorites
+    // Remove from cart
     builder.addCase(
         removeFromCartAction,
         (state: any, action: PayloadAction<number>) => {
@@ -27,6 +29,7 @@ const cartReducer = createReducer(initialState, (builder) => {
 
 
 export const addToCart = (cartId: number): AnyAction => (
+    localStorage.setItem('cart', cartId.toString()), 
     addToCartAction(cartId)
 )
 
