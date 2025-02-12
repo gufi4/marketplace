@@ -15,24 +15,28 @@ import {
     Image,
     InfoWrapper,
     PriceWrapper,
-    PriceRegular,
-    PriceRegularWhenDiscounted,
-    PriceDiscounted,
+    Price,
 } from './styled'
 import type { I_ProductDetails } from '../../pages/types'
-//import type { I_UniRes } from '../../types'
+import { dummyProducts } from '../dummyProducts'
+import Button from '../../components/Button'
+import { addToCart, removeFromCart } from '../../features/Cart/reducer'
+import { selectCart } from '../../features/Cart/selectors'
 
 
 const ProductDetailsPage: React.FC = () => {
-    //const params = useParams()
+    const params = useParams()
     const dispatch = useAppDispatch()
 
     const [ productDetails, setProductDetails ] = useState<I_ProductDetails>()
 
-    // useEffect(() => {
-    //     get(`/products/${params.idOrSlug}`)
-    //     .then((res: I_UniRes) => setProductDetails(res.data))
-    // }, [ params.idOrSlug ])
+    useEffect(() => {
+        {dummyProducts.map((p) => {
+            if (p.id === +params.idOrSlug! || p.slug === params.idOrSlug) {
+                setProductDetails(p)
+            }
+        })}
+    }, [ params.idOrSlug ])
 
     const idsInFavorites = useAppSelector(selectFavorites)
 
@@ -40,6 +44,13 @@ const ProductDetailsPage: React.FC = () => {
         () => idsInFavorites.includes(productDetails?.id!),
         [ idsInFavorites, productDetails ]
     )
+
+    const idsInCart = useAppSelector(selectCart)
+
+    const isCart = useMemo(
+            () => idsInCart.includes(productDetails?.id!),
+        [ idsInCart, productDetails ]
+        )
 
     const handleFavorites = useCallback((e: React.MouseEvent<HTMLElement>) => {
         const { productId } = e.currentTarget.dataset
@@ -51,22 +62,38 @@ const ProductDetailsPage: React.FC = () => {
         )
     }, [ dispatch, idsInFavorites ])
 
+    const addProductFromCart = useCallback(
+        (e: React.MouseEvent<HTMLElement>) => {
+            dispatch(
+                addToCart(+e.currentTarget.dataset.productId!)
+            )
+        }, [ dispatch ]
+    )
+
+    const removeProductFromCart = useCallback(
+        (e: React.MouseEvent<HTMLElement>) => {
+            dispatch(
+                removeFromCart(+e.currentTarget.dataset.productId!)
+            )
+        }, [ dispatch ]
+    )
+
 
     if (!productDetails) return null
 
 
-    const { id, image, title, description, price, priceDiscounted } = productDetails
+    const { id, image, title, description, price, brend} = productDetails
 
 
     return <>
         <Helmet>
-        <title>Главная - MW Marketplace</title>
+        <title>Карточка товара</title>
         </Helmet>
 
         <PageWrapper>
         <Wrapper>
             <ImagesWrapper>
-            {/* <Image src={`${process.env.REACT_APP_API_URL}/images/products/${image}`} /> */}
+            <Image src={image} />
 
             <LikeWrapper
                 data-product-id={id}
@@ -80,19 +107,34 @@ const ProductDetailsPage: React.FC = () => {
             <h1>{title}</h1>
 
             <PriceWrapper>
-                {Number.isInteger(priceDiscounted) ? <>
-                <PriceDiscounted>{priceDiscounted} ₽</PriceDiscounted>
-                <PriceRegularWhenDiscounted>{price} ₽</PriceRegularWhenDiscounted>
-                </> : (
-                <PriceRegular>{price} ₽</PriceRegular>
-                )}
+                <Price>{price} ₽</Price>
             </PriceWrapper>
 
             <p>{description}</p>
+            <p>{brend}</p>
+            <Button
+                type="primary"
+                onClick={addProductFromCart}
+                data-product-id={id}
+                block
+            >
+                Добавить в корзину
+            </Button>
+
+            {isCart && (
+                <Button
+                    type="danger"
+                    block
+                    onClick={removeProductFromCart}
+                    data-product-id={id}
+                >
+                    Удалить
+                </Button>
+            )}
             </InfoWrapper>
         </Wrapper>
         </PageWrapper>
     </>
-    }
+}
 
 export default ProductDetailsPage

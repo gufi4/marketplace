@@ -28,7 +28,7 @@ const FavotitesPage: React.FC = () => {
     const dispatch = useAppDispatch()
     const idsInCarts = useAppSelector(selectCart)
 
-    const removeProduct = useCallback(
+    const removeProductFromCart = useCallback(
             (e: React.MouseEvent<HTMLElement>) => {
                 dispatch(
                     removeFromCart(+e.currentTarget.dataset.productId!)
@@ -74,7 +74,7 @@ const FavotitesPage: React.FC = () => {
                                 <ButtonWrapper>
                                     <Button
                                         type="ghost"
-                                        onClick={removeProduct}
+                                        onClick={removeProductFromCart}
                                         data-product-id={p.id}
                                         block
                                     >
