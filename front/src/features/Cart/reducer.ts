@@ -1,40 +1,50 @@
-import { AnyAction, createAction, createReducer, PayloadAction } from "@reduxjs/toolkit"
+import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 
-import { I_Cart } from "./types"
-
-
-const initialState: I_Cart =[]
+import { CartState, ItemCartWithoutQuantity } from "./types"
 
 
-//Сделать редьюсео как у app, и добавить в него локал стор
+const initialState: CartState = {
+    items: []
+}
 
-const addToCartAction = createAction<number>('CART/add')
-const removeFromCartAction = createAction<number>('CART/remove')
 
-const cartReducer = createReducer(initialState, (builder) => {
-    // Add to cart
-    builder.addCase(
-        addToCartAction,
-        (state: any, action: PayloadAction<number>) => [...state, action.payload]
-    )
 
-    // Remove from cart
-    builder.addCase(
-        removeFromCartAction,
-        (state: any, action: PayloadAction<number>) => {
-            return state.filter((cartId: number) => cartId !== action.payload)
+const cartSlice = createSlice({
+    name: 'cart',
+    initialState,
+    reducers: {
+        addToCart: (state, action: PayloadAction<ItemCartWithoutQuantity>) => {
+            const itemIndex = state.items.findIndex(
+                (item) => item.id === action.payload.id
+            );
+            if (itemIndex >= 0) {
+                state.items[itemIndex].quantity++;
+            } else {
+                state.items.push({ ...action.payload, quantity: 1 });
+            }
+        },
+        removeFromCart: (state, action: PayloadAction<number>) => {
+            const itemIndex = state.items.findIndex(
+                (item) => item.id === action.payload
+            );
+
+            if (state.items[itemIndex].quantity === 1) {
+                state.items.splice(itemIndex, 1);
+            } else {
+                state.items[itemIndex].quantity--;
+            }
+        },
+        clearCart: (state, action: PayloadAction<number>) => {
+            const itemIndex = state.items.findIndex(
+                (item) => item.id === action.payload
+            );
+
+            if (state.items[itemIndex].quantity > 0) {
+                state.items.splice(itemIndex, 1);
+            } 
         }
-    )
+    }
 })
+export const { addToCart, removeFromCart, clearCart } = cartSlice.actions;
 
-
-export const addToCart = (cartId: number): AnyAction => (
-    localStorage.setItem('cart', cartId.toString()), 
-    addToCartAction(cartId)
-)
-
-export const removeFromCart = (cartId: number): AnyAction => (
-    removeFromCartAction(cartId)
-)
-
-export default cartReducer
+export default cartSlice.reducer
