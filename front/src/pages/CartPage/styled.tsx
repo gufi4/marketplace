@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 import colors from "../../consts/colors"
 
 export const ProductGroup = styled.div`
@@ -24,15 +24,16 @@ export const ProductWrapper = styled.div`
 `
 
 export const Image = styled.img`
-    height: 165px;
+    width: 400px;
     border-radius: 4px;
     object-fit: scale-down;
 `
 
-export const TitleWrapper = styled.div`
+export const InfoWrapper = styled.div`
+    min-width: 150px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     margin-left: 40px;
 `
 
@@ -40,8 +41,12 @@ export const Title = styled.h3`
     
 `
 
-export const Desc = styled.div`
-    margin-bottom: 80px;
+export const Quantity = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    font-size: 20px;
 `
 
 export const Price = styled.div`

@@ -74,13 +74,20 @@ const ProductCard: React.FC<I_ProductCardProps> = ({
         }, [ dispatch ]
     )
     
-    const addProductFromCart = useCallback(
-        (e: React.MouseEvent<HTMLElement>) => {
-            dispatch(
-                addToCart(+e.currentTarget.dataset.productId!)
-            )
-        }, [ dispatch ]
-    )
+    const addProductFromCart = (id: number,
+        image: string,
+        title: string,
+        brend: string,
+        price: number,
+        slug?: string): void => {
+            dispatch(addToCart({
+                id,
+                image, 
+                title,
+                brend, 
+                price,
+                slug}))
+        }
 
 
         return(
@@ -122,8 +129,7 @@ const ProductCard: React.FC<I_ProductCardProps> = ({
                 <BtnsWrapper>
                     <Button 
                         type="primary"
-                        onClick={addProductFromCart}
-                        data-product-id={id}
+                        onClick={() => addProductFromCart(id, image, title, brend, price, slug)}
                         block
                         >
                         Добавить в корзину
@@ -136,7 +142,7 @@ const ProductCard: React.FC<I_ProductCardProps> = ({
                             onClick={removeFavorites}
                             data-product-id={id}
                         >
-                            Удалить
+                            Удалить из избранного
                         </Button>
                     )}
                 </BtnsWrapper>

@@ -78,7 +78,7 @@ const Header: React.FC = () => {
                     <BtnOrders/>
                     <BtnFavorites count={favorites.length}/>
                     <BtnNotifications/>
-                    <BtnCart count={cart.length}/>
+                    <BtnCart count={cart.items.length}/>
                     <UserDropdownMenu/>
                 </> : (
                     <Link to={paths.login}>
