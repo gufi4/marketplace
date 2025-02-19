@@ -16,8 +16,9 @@ export interface I_CountProps{
 }
 
 export const Wrapper = styled.div`
+    width: 100%;
     border-radius: 6px;
-    padding: 14px 20px;
+    padding: 10px 20px;
     display: flex;
     align-items: center;
     justify-content: flex-end;

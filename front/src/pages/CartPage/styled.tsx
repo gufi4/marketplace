@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components"
+import styled from "styled-components"
 import colors from "../../consts/colors"
 
 export const ProductGroup = styled.div`
@@ -9,17 +9,14 @@ export const ProductGroup = styled.div`
 
 export const ProductsGroupContainer = styled.div`
     margin-top: 15px;
-
-    > * {
-        width: 16.666666%;
-        margin-bottom: 20px;
-    }
+    min-width: 70%;
+    
 `
 export const ProductWrapper = styled.div`
     width: 70%;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-around;
     margin-bottom: 50px;
 `
 
@@ -63,5 +60,43 @@ export const ButtonWrapper = styled.div`
 `
 
 export const CartWrapper = styled.div`
-    
+    border: 1px solid #c4c4c4;
+    box-shadow: 0px 0px 20px 5px rgba(49, 49, 49, 0.15);
+    border-radius: 10px;
+    padding: 25px;
+    color: black;
+    width: 25%;
+    height: fit-content;
+    text-align: center;
 `
+
+export const InfoTitle = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px 0;
+    font-size: 16px;
+    font-weight: 600;
+`
+
+export const InfoCart = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 14px;
+
+    > * {
+        margin-bottom: 10px;
+    }
+`
+
+export const TotalPrice = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 16px;
+    font-weight: 600;
+    border-top: 1px solid ${colors.secondary};
+    padding-top: 15px;
+`
+

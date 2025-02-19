@@ -72,10 +72,6 @@ export const AppStyles = createGlobalStyle`
     p, li {
         line-height: 21px;
     }
-    .icon {
-        width: 20px;
-        height: 20px;
-    }
 `
 
 //

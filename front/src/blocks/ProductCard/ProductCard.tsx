@@ -1,5 +1,5 @@
-import { useCallback, useMemo } from "react"
-import { Link, useLocation } from "react-router-dom"
+import { useCallback, useMemo, useState } from "react"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 
 import { useAppDispatch } from '../../store'
 import HeartEmpty from '../../img/heart-empty.svg?react'
@@ -8,6 +8,7 @@ import Button from "../../components/Button"
 import { addToFavorites, removeFromFavorites } from "../../features/Favorites/reducer"
 import { paths } from "../../routes/helpers"
 import NewIcon from '../../img/new.svg?react'
+import { addToCart } from "../../features/Cart/reducer"
 
 import { 
     Wrapper, 
@@ -20,7 +21,6 @@ import {
     BtnsWrapper,
     NewWrapper,
 } from "./styled"
-import { addToCart } from "../../features/Cart/reducer"
 
 
 interface I_ProductCardProps {
@@ -50,6 +50,9 @@ const ProductCard: React.FC<I_ProductCardProps> = ({
 }) => {
     const dispatch = useAppDispatch()
     const location = useLocation()
+    const navigate = useNavigate();
+    const [ addCart, setAddCart ] = useState<boolean>(false)
+
 
     const handleFavorites = useCallback((e: React.MouseEvent<HTMLElement>) => {
         const { productId } = e.currentTarget.dataset
@@ -80,13 +83,15 @@ const ProductCard: React.FC<I_ProductCardProps> = ({
         brend: string,
         price: number,
         slug?: string): void => {
+            setAddCart(true),
             dispatch(addToCart({
                 id,
                 image, 
                 title,
                 brend, 
                 price,
-                slug}))
+                slug,
+            }))    
         }
 
 
@@ -115,7 +120,7 @@ const ProductCard: React.FC<I_ProductCardProps> = ({
                     <PriceRegular>{price} ₽</PriceRegular>
                 </PriceWrapper>
 
-                <Title className='h4'>
+                <Title >
                     <Link to={`/product/${slug || id}`}>
                     {title} 
                     </Link>
@@ -127,13 +132,23 @@ const ProductCard: React.FC<I_ProductCardProps> = ({
                 </Desc>
 
                 <BtnsWrapper>
-                    <Button 
-                        type="primary"
-                        onClick={() => addProductFromCart(id, image, title, brend, price, slug)}
-                        block
+                    {!addCart ? 
+                        <Button 
+                            type="primary"
+                            onClick={() => addProductFromCart(id, image, title, brend, price, slug)}
+                            block
+                            >
+                            Добавить в корзину
+                        </Button> 
+                        : 
+                        <Button
+                            type="primary"
+                            onClick={()=> navigate('/cart')}
+                            block
                         >
-                        Добавить в корзину
-                    </Button>
+                            Перейти в корзину 
+                        </Button>
+                    }
 
                     {isFavoritesPage && (
                         <Button
