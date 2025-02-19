@@ -51,7 +51,8 @@ const Button = styled (({
             case 'danger': return colors.danger
             default: return colors.primary
         }
-    }};user-select: none;
+    }};
+    user-select: none;
     cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
     border-radius: 5px;
     display: inline-flex;

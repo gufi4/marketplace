@@ -6,6 +6,8 @@ import { ProductGroup, ProductGroupContainer } from "./styled"
 import { selectFavorites } from "../../features/Favorites/selectors"
 import ProductCard from "../../blocks/ProductCard"
 import { dummyProducts } from "../dummyProducts"
+import { Slider } from "../../components/ImageSlider/ImageSlider"
+import { imageData } from "../../components/ImageSlider/ImageData"
 
 
 
@@ -19,6 +21,7 @@ const HomePage: React.FC =() =>{
         </Helmet>
         
         <PageWrapper>
+            <Slider Data={imageData}/>
             <ProductGroup>
                 <h1>Рекомендуемые товары</h1>
 

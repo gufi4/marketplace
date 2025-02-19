@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useMemo } from 'react'
 import { Helmet } from 'react-helmet'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../store'
 import { addToFavorites, removeFromFavorites } from '../../features/Favorites/reducer'
@@ -20,13 +20,14 @@ import {
 import type { I_ProductDetails } from '../../pages/types'
 import { dummyProducts } from '../dummyProducts'
 import Button from '../../components/Button'
-import { addToCart, removeFromCart } from '../../features/Cart/reducer'
-import { selectCart } from '../../features/Cart/selectors'
+import { addToCart } from '../../features/Cart/reducer'
 
 
 const ProductDetailsPage: React.FC = () => {
     const params = useParams()
     const dispatch = useAppDispatch()
+    const navigate = useNavigate();
+    const [ addCart, setAddCart ] = useState<boolean>(false)
 
     const [ productDetails, setProductDetails ] = useState<I_ProductDetails>()
 
@@ -45,13 +46,6 @@ const ProductDetailsPage: React.FC = () => {
         [ idsInFavorites, productDetails ]
     )
 
-    const idsInCart = useAppSelector(selectCart)
-
-    const isCart = useMemo(
-            () => idsInCart.includes(productDetails?.id!),
-        [ idsInCart, productDetails ]
-        )
-
     const handleFavorites = useCallback((e: React.MouseEvent<HTMLElement>) => {
         const { productId } = e.currentTarget.dataset
 
@@ -62,27 +56,29 @@ const ProductDetailsPage: React.FC = () => {
         )
     }, [ dispatch, idsInFavorites ])
 
-    const addProductFromCart = useCallback(
-        (e: React.MouseEvent<HTMLElement>) => {
-            dispatch(
-                addToCart(+e.currentTarget.dataset.productId!)
-            )
-        }, [ dispatch ]
-    )
-
-    const removeProductFromCart = useCallback(
-        (e: React.MouseEvent<HTMLElement>) => {
-            dispatch(
-                removeFromCart(+e.currentTarget.dataset.productId!)
-            )
-        }, [ dispatch ]
-    )
+    function addProductFromCart (id: number,
+            image: string,
+            title: string,
+            brend: string,
+            price: number,
+            slug?: string,
+                ): void {
+                    setAddCart(true),
+                    dispatch(addToCart({
+                        id,
+                        image, 
+                        title,
+                        brend, 
+                        price,
+                        slug,
+                    }))
+            }
 
 
     if (!productDetails) return null
 
 
-    const { id, image, title, description, price, brend} = productDetails
+    const { id, image, title, description, price, brend, slug} = productDetails
 
 
     return <>
@@ -112,25 +108,25 @@ const ProductDetailsPage: React.FC = () => {
 
             <p>{description}</p>
             <p>{brend}</p>
-            <Button
-                type="primary"
-                onClick={addProductFromCart}
-                data-product-id={id}
-                block
-            >
-                Добавить в корзину
-            </Button>
-
-            {isCart && (
+            {!addCart ? 
                 <Button
-                    type="danger"
-                    block
-                    onClick={removeProductFromCart}
+                    type="primary"
+                    onClick={()=>{addProductFromCart(id, image, title, brend, price, slug)}}
                     data-product-id={id}
+                    block
                 >
-                    Удалить
+                    Добавить в корзину
+                </Button> 
+                : 
+                <Button
+                    type="primary"
+                    onClick={()=> navigate('/cart')}
+                    block
+                >
+                    Перейти в корзину 
                 </Button>
-            )}
+            }
+
             </InfoWrapper>
         </Wrapper>
         </PageWrapper>

@@ -17,6 +17,9 @@ import {
     Title,
     InfoWrapper,
     Quantity,
+    InfoCart,
+    InfoTitle,
+    TotalPrice,
 } from './styled'
 import Button from "../../components/Button"
 
@@ -46,14 +49,16 @@ const CartPage: React.FC = () => {
             title: string,
             brend: string,
             price: number,
-            slug?: string): void {
+            slug?: string,
+                ): void {
                 dispatch(addToCart({
                     id,
                     image, 
                     title,
                     brend, 
                     price,
-                    slug}))
+                    slug,
+                }))
             }
     
     return <>
@@ -82,12 +87,10 @@ const CartPage: React.FC = () => {
                                     </Title>
                                     <Quantity>
                                         <LuCirclePlus
-                                            className="icon"
                                             onClick={()=>{addProductFromCart(p.id, p.image, p.title, p.brend, p.price, p.slug)}}
                                         /> 
                                         {p.quantity} 
                                         <LuCircleMinus
-                                            className="icon"
                                             onClick={()=>{removeProductFromCart(p.id)}}
                                         />
                                     </Quantity>
@@ -113,9 +116,23 @@ const CartPage: React.FC = () => {
 
                     </ProductsGroupContainer>
                         <CartWrapper>
-                            <h1>Корзина</h1>
-                            <p>{totalPrice}</p>
+                            <Title className="h1">Корзина</Title>
+                            <InfoTitle>
+                                <span>Название</span>
+                                <span>Цена</span>
+                            </InfoTitle>
+                            {cartItems.map((p) => (
+                                <InfoCart>
+                                    <span>{p.title}</span>
+                                    <span>{p.quantity * p.price}</span>
+                                </InfoCart>
+                            ))}
+                            <TotalPrice>
+                                <span>Итого:</span>
+                                <span>{totalPrice}</span>
+                            </TotalPrice>
                         </CartWrapper>
+                    
                 </ProductGroup>
             ) : (
                 <p>Пока в корзине ничего нет</p>
